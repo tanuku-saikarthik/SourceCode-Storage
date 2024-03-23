@@ -1,0 +1,73 @@
+/* styles2.css */
+
+.container {
+    /* Adjust width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 2rem; /* Add some padding for spacing */
+    border-radius: 5px; /* Add subtle rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Create a soft shadow effect */
+    background-color: #e0f2ff; /* Light blue */
+  }
+  
+  .title {
+    text-align: center; /* Center the title text */
+    margin-bottom: 1rem; /* Add some space below the title */
+    font-size: 1.5rem; /* Increase title font size */
+    font-weight: bold; /* Make the title bold */
+    color: #22334a; /* Dark blue */
+  }
+  
+  .submission-wrapper {
+    height: 400px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Optional border around the scrollable area */
+    border-radius: 5px; /* Add subtle rounded corners (optional) */
+  }
+
+  
+  .submission-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    border: 1px solid #d0e3f4; /* Light blue border */
+  }
+  
+  .submission-header
+  {
+    display: flex; /* Make headers and items display inline */
+    justify-content: space-between; /* Distribute items evenly */
+    padding: 0.75rem 1rem; /* Add padding to list items */
+    border-bottom: 1px solid #ddd; /* Add a subtle border between items */
+    background-image: linear-gradient(to right, #f5f8fa 0%, #f1f4f7 100%); /* Light gradient */
+    color: #3366cc; /* Blue */
+    font-weight: bold; /* Make headers bold */
+  }
+  .submission-item {
+    display: flex; /* Make headers and items display inline */
+    justify-content: space-between; /* Distribute items evenly */
+    padding: 0.75rem 1rem; /* Add padding to list items */
+    border-bottom: 1px solid #ddd; /* Add a subtle border between items */
+    background-image: linear-gradient(to right, #f5f8fa 0%, #f1f4f7 100%); /* Light gradient */
+    color: #22334a; /* Dark blue */
+  }
+  
+  .submission-header span,
+  .submission-item span {
+    flex: 1; /* Make each span element take up equal space */
+    text-align: left; /* Align content to the left */
+    
+  }
+
+
+  .submission-item:nth-child(even) {
+    background-image: linear-gradient(to right, #f1f4f7 0%, #f5f8fa 100%); /* Reverse gradient for even rows */
+  }
+
+
+
+  .body
+{
+    padding:0;
+    margin:0;
+    border:0;
+}
