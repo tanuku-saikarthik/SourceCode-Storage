@@ -1,9 +1,9 @@
 import express from "C:\Users\tanuk\AppData\Local\Microsoft\TypeScript\x05.3\node_modules\@types\express\index.d.ts";
-import bodyParser from 'body-parser';
-import mysql from 'mysql2';
-import dotenv from 'dotenv'; // Import dotenv package
-import cors from 'cors';
-import path from 'path';
+import bodyParser from 'C:\Users\tanuk\AppData\Local\Microsoft\TypeScript\5.3\node_modules\@types\body-parser\index.d.ts';
+import mysql from 'C:\IShouldDoIt\backend\node_modules\mysql2\typings\mysql\index.d.ts';
+import dotenv from 'C:\IShouldDoIt\backend\node_modules\dotenv\lib\main.d.ts'; // Import dotenv package
+import cors from 'C:\Users\tanuk\AppData\Local\Microsoft\TypeScript\5.3\node_modules\@types\cors\index.d.ts';
+import path from 'C:\Users\tanuk\AppData\Local\Microsoft\TypeScript\5.3\node_modules\@types\node\path.d.ts';
 
 
 const __dirname = path.resolve();
