@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "C:\Users\tanuk\AppData\Local\Microsoft\TypeScript\x05.3\node_modules\@types\express\index.d.ts";
 import bodyParser from 'body-parser';
 import mysql from 'mysql2';
 import dotenv from 'dotenv'; // Import dotenv package
