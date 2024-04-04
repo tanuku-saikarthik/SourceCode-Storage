@@ -1,79 +1,62 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import mysql from 'mysql2';
-import dotenv from 'dotenv'; // Import dotenv package
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
-
+import Submission from './models/submission.js';
 
 const __dirname = path.resolve();
 
-
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3001; // Use environment variable for port or default to 3001
+const port = process.env.PORT || 3001;
 app.use(cors());
- 
 
-// MySQL connection
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || 'pool'
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://tanukusaikarthik:ArwanocwYMOwn7x0@cluster0.vklpuym.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    process.exit(1); // Exit process if unable to connect to the database
-  }
-  console.log('Connected to MySQL database');
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('Connected to MongoDB database');
 });
 
-// Middleware
 app.use(bodyParser.json());
 
 // POST endpoint to handle form submission
-app.post('/api', (req, res) => {
-  const { username, pCodeLang, stdin, sourcecode } = req.body;
-  const timestamp = new Date().toISOString();
-
-  const sql = 'INSERT INTO submissions (username, pCodeLang, stdin, sourcecode, timestamp) VALUES (?, ?, ?, ?, ?)';
-  const values = [username, pCodeLang, stdin, sourcecode, timestamp];
-
-  connection.query(sql, values, (err, result) => {
-    if (err) {
-      console.error('Error inserting submission into database:', err);
-      return res.status(500).json({ success: false, message: 'Failed to submit entry' });
-    }
-    console.log('Submission inserted into database:', result);
+app.post('/api', async (req, res) => {
+  try {
+    const { username, pCodeLang, stdin, sourcecode } = req.body;
+    const submission = new Submission({ username, pCodeLang, stdin, sourcecode });
+    await submission.save();
+    console.log('Submission inserted into database:', submission);
     res.status(200).json({ success: true, message: 'Entry submitted successfully' });
-  });
+  } catch (err) {
+    console.error('Error inserting submission into database:', err);
+    res.status(500).json({ success: false, message: 'Failed to submit entry' });
+  }
 });
 
 // GET endpoint to retrieve all submissions
-app.get('/api/submissions', (req, res) => {
-  const sql = 'SELECT * FROM submissions';
-
-  connection.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error retrieving submissions from database:', err);
-      return res.status(500).json({ success: false, message: 'Failed to retrieve submissions' });
-    }
-
-    console.log('Submissions retrieved from database:', results);
-    res.status(200).json(results);
-  });
+app.get('/api/submissions', async (req, res) => {
+  try {
+    const submissions = await Submission.find();
+    console.log('Submissions retrieved from database:', submissions);
+    res.status(200).json(submissions);
+  } catch (err) {
+    console.error('Error retrieving submissions from database:', err);
+    res.status(500).json({ success: false, message: 'Failed to retrieve submissions' });
+  }
 });
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
-// Start the server
 app.listen(port, () => {
-  console.log(`Server is running on sourcecode-storage.onrender.com`);
+  console.log(`Server is running on https://localhost:3001`);
 });
