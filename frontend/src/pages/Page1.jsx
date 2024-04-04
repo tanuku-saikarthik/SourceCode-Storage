@@ -20,16 +20,17 @@ const Page1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://localhost:3001/api/', formData) // Note the trailing slash in the URL
+        axios.post('https://localhost:3001/api/', formData)
             .then(response => {
                 console.log(response.data);
                 // Clear form fields after successful submission
-                setFormData({
+                setFormData(prevState => ({
+                    ...prevState,
                     username: '',
                     pCodeLang: 'C++',
                     stdin: '',
                     sourcecode: ''
-                });
+                }));
             })
             .catch(error => {
                 console.error('Error submitting form:', error);
