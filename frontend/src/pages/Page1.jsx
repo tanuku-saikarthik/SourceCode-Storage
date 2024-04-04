@@ -20,6 +20,8 @@ const Page1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(username);
+        alert("Submitted");
         axios.post('https://localhost:3001/api/', formData)
             .then(response => {
                 console.log(response.data);
