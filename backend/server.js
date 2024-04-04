@@ -13,11 +13,9 @@ const app = express();
 const port = process.env.PORT || "https://sourcecode-storage.onrender.com";
 app.use(cors());
 
-<<<<<<< HEAD
-mongoose.connect(process.env.MONGODB_URI, {
-=======
+
 mongoose.connect(process.env.MONGODB_URI {
->>>>>>> f9ccc62cdc04f946d2bd312dd8a86696fe5b0505
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
