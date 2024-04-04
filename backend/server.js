@@ -10,7 +10,7 @@ const __dirname = path.resolve();
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || "https://sourcecode-storage.onrender.com";
 app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://tanukusaikarthik:ArwanocwYMOwn7x0@cluster0.vklpuym.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
@@ -58,5 +58,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on https://localhost:3001`);
+  console.log(`Server is running on https://sourcecode-storage.onrender.com/api/`);
 });
