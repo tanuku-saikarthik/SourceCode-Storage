@@ -11,7 +11,7 @@ function Page2() {
 
   const fetchSubmissions = async () => {
     try {
-      const response = await axios.get('https://localhost:3001/api/submissions');
+      const response = await axios.get('https://sourcecode-storage.onrender.com/api/submissions');
       setSubmissions(response.data);
     } catch (error) {
       console.error('Error fetching submissions:', error);
